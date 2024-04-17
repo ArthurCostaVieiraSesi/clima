@@ -2,6 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="clima.MainPage"
-             Shell.NavBarIsVisible="false">
+             Shell.NavBarIsVisible="false"
+             BackgroundColor="#332b45">
+
+    <Grid>
+
+            <Frame x:Name="graus"
+                Margin="10,90,10,460"
+                Opacity="0.5"
+                BackgroundColor="#e2dee3"/>
+
+            <Frame x:Name="chuva"
+                Margin="10,250,185,362"
+                Opacity="0.5"
+                BackgroundColor="#e2dee3"/>
+
+            <Frame x:Name="vento"
+                Margin="185,250,10,362"
+                Opacity="0.5"
+                BackgroundColor="#e2dee3"/>
+
+            <Frame x:Name="sol"
+                Margin="10,345,185,272"
+                Opacity="0.5"
+                BackgroundColor="#e2dee3"/>
+
+            <Frame x:Name="lua"
+                Margin="185,345,10,272"
+                Opacity="0.5"
+                BackgroundColor="#e2dee3"/>
+
+            <Frame x:Name="azul"
+                Margin="10,540,10,20"
+                Opacity="0.3"
+                BackgroundColor="#e2dee3"/>
+
+
+    </Grid>
 
 </ContentPage>
