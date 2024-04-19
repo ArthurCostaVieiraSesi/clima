@@ -7,9 +7,8 @@
 
     <Grid>
 
-            <Image Source="dianublado.webp"
-                    Aspect="AspectFill"
-                    x:Name="img"/>
+            <Image x:Name="imgBackground"
+                    Aspect="AspectFill"/>
 
             <Frame x:Name="graus"
                 Margin="10,90,10,460"
@@ -60,6 +59,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                      <RowDefinition Height="*"/>
+                     <RowDefinition Height="*"/>
                  </Grid.RowDefinitions>
 
                  <Grid.ColumnDefinitions>
@@ -77,6 +77,11 @@
                           FontFamily="daddy"
                          Grid.Row="1"/>
 
+                    <Label Text="Nublado:"
+                         Grid.Column="0"
+                          FontFamily="daddy"
+                         Grid.Row="2"/>
+
                           <Label Text="69"
                          Grid.Column="1"
                           FontFamily="daddy"
@@ -88,6 +93,12 @@
                           FontFamily="daddy"
                            x:Name="LabelChuva"
                          Grid.Row="0"/>
+
+                         <Label Text="24"
+                         Grid.Column="1"
+                          FontFamily="daddy"
+                           x:Name="LabelNublado"
+                         Grid.Row="2"/>
 
                         
                 </Grid>
@@ -238,6 +249,12 @@
                 Margin="10,540,10,20"
                 Opacity="0.3"
                 BackgroundColor="#e2dee3"/>
+
+            <Label Text="ºC"
+                  FontFamily="daddy"
+                  FontSize="50"
+                  Margin="83,128,0,0"
+                  Opacity="0.7"/>
 
 
     </Grid>

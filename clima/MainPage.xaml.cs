@@ -15,7 +15,7 @@ public partial class MainPage : ContentPage
 			resultado = new Results();
 			resultado.temp = 24;
 			resultado.description = "Tempo Nublado";
-			resultado.rain = 88;
+			resultado.rain = 18;
 			resultado.city = "Apucarana";
 			resultado.humidity = 88;
 			resultado.wind_speed = 3;
@@ -24,6 +24,8 @@ public partial class MainPage : ContentPage
 			resultado.sunrise = "06:13";
 			resultado.sunset = "18:27";
 			resultado.moon_phase = "Cheia";
+			resultado.cloudness = 38;
+			resultado.currently = "dia";
 
 		}
 
@@ -40,6 +42,26 @@ public partial class MainPage : ContentPage
 			LabelAnoitecer.Text = resultado.sunset;
 			LabelLua.Text = resultado.moon_phase;
 			LabelCardinal.Text = resultado.wind_cardinal;
+			LabelNublado.Text = resultado.cloudness.ToString();
+
+			if (resultado.currently == "dia")
+			{
+				if (resultado.rain >= 35)
+					imgBackground.Source = "diachuva.webp";
+				else if (resultado.cloudness >= 35)
+					imgBackground.Source = "dianublado.webp";
+				else
+					imgBackground.Source = "dia.webp";
+			}
+			else if (resultado.currently == "noite")
+			{
+				if (resultado.rain >= 35)
+					imgBackground.Source = "noitechuva.webp";
+				else if (resultado.cloudness >= 35)
+					imgBackground.Source = "noitenublada.webp";
+				else
+					imgBackground.Source = "noite.webp";
+			}
 
 		}
 
