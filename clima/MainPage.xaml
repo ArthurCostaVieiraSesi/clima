@@ -70,26 +70,31 @@
                   <Label Text="Chuva:"
                         Grid.Column="0"
                          FontFamily="daddy"
+                         VerticalOptions="End"
                         Grid.Row="0"/>
 
                    <Label Text="Humidade:"
                          Grid.Column="0"
                           FontFamily="daddy"
+                          VerticalOptions="End"
                          Grid.Row="1"/>
 
                     <Label Text="Nublado:"
                          Grid.Column="0"
                           FontFamily="daddy"
+                          VerticalOptions="End"
                          Grid.Row="2"/>
 
                           <Label Text="69"
                          Grid.Column="1"
                           FontFamily="daddy"
                          x:Name="LabelHumidade"
+                         VerticalOptions="End"
                          Grid.Row="1"/>
 
                         <Label Text="24"
                          Grid.Column="1"
+                         VerticalOptions="End"
                           FontFamily="daddy"
                            x:Name="LabelChuva"
                          Grid.Row="0"/>
@@ -97,6 +102,7 @@
                          <Label Text="24"
                          Grid.Column="1"
                           FontFamily="daddy"
+                          VerticalOptions="End"
                            x:Name="LabelNublado"
                          Grid.Row="2"/>
 

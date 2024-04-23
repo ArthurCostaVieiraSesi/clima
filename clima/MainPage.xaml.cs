@@ -1,69 +1,78 @@
-﻿namespace clima;
+﻿using System.Text.Json;
+
+namespace clima;
 
 public partial class MainPage : ContentPage
 {
-    Results resultado;
+	const string Url="https://api.hgbrasil.com/weather?woeid=455927&key=54f7cbee";
+	Resposta resposta;
+
 	public MainPage()
 	{
 		InitializeComponent();
-		TestaLayout();
-		PreencherTela();
+
+		AtualizaTempo();
+		
 	}
 
-		void TestaLayout()
-		{
-			resultado = new Results();
-			resultado.temp = 24;
-			resultado.description = "Tempo Nublado";
-			resultado.rain = 18;
-			resultado.city = "Apucarana";
-			resultado.humidity = 88;
-			resultado.wind_speed = 3;
-			resultado.wind_direction = 397;
-			resultado.wind_cardinal = "N";
-			resultado.sunrise = "06:13";
-			resultado.sunset = "18:27";
-			resultado.moon_phase = "Cheia";
-			resultado.cloudness = 38;
-			resultado.currently = "dia";
+		
 
+	void PreencherTela()
+	{
+		LabelChuva.Text = resposta.results.rain.ToString();
+		LabelHumidade.Text = resposta.results.humidity.ToString();
+		LabelGraus.Text = resposta.results.temp.ToString();
+		LabelClima.Text = resposta.results.description;
+		LabelCidade.Text = resposta.results.city;
+		LabelForça.Text = resposta.results. wind_speed.ToString();
+		LabelDireção.Text = resposta.results.wind_direction.ToString();
+		LabelAmanhecer.Text = resposta.results.sunrise;
+		LabelAnoitecer.Text = resposta.results.sunset;
+		LabelLua.Text = resposta.results.moon_phase;
+		LabelCardinal.Text = resposta.results.wind_cardinal;
+		LabelNublado.Text = resposta.results.cloudness.ToString();
+
+		if (resposta.results.currently == "dia")
+		{
+			if (resposta.results.rain >= 35)
+				imgBackground.Source = "diachuva.webp";
+			else if (resposta.results.cloudness >= 35)
+				imgBackground.Source = "dianublado.webp";
+			else
+				imgBackground.Source = "dia.webp";
+		}
+		else if (resposta.results.currently == "noite")
+		{
+			if (resposta.results.rain >= 35)
+				imgBackground.Source = "noitechuva.webp";
+			else if (resposta.results.cloudness >= 35)
+				imgBackground.Source = "noitenublada.webp";
+			else
+				imgBackground.Source = "noite.webp";
 		}
 
-		void PreencherTela()
+	}
+
+	async void AtualizaTempo()
+	{
+		try
 		{
-			LabelChuva.Text = resultado.rain.ToString();
-			LabelHumidade.Text = resultado.humidity.ToString();
-			LabelGraus.Text = resultado.temp.ToString();
-			LabelClima.Text = resultado.description;
-			LabelCidade.Text = resultado.city;
-			LabelForça.Text = resultado. wind_speed.ToString();
-			LabelDireção.Text = resultado.wind_direction.ToString();
-			LabelAmanhecer.Text = resultado.sunrise;
-			LabelAnoitecer.Text = resultado.sunset;
-			LabelLua.Text = resultado.moon_phase;
-			LabelCardinal.Text = resultado.wind_cardinal;
-			LabelNublado.Text = resultado.cloudness.ToString();
-
-			if (resultado.currently == "dia")
+			var httpClient = new HttpClient();
+			var response  = await httpClient.GetAsync(Url);
+			if (response.IsSuccessStatusCode)
 			{
-				if (resultado.rain >= 35)
-					imgBackground.Source = "diachuva.webp";
-				else if (resultado.cloudness >= 35)
-					imgBackground.Source = "dianublado.webp";
-				else
-					imgBackground.Source = "dia.webp";
+				string content = await response.Content.ReadAsStringAsync();
+				resposta = JsonSerializer.Deserialize<Resposta>(content);
 			}
-			else if (resultado.currently == "noite")
-			{
-				if (resultado.rain >= 35)
-					imgBackground.Source = "noitechuva.webp";
-				else if (resultado.cloudness >= 35)
-					imgBackground.Source = "noitenublada.webp";
-				else
-					imgBackground.Source = "noite.webp";
-			}
-
+		}
+		catch(Exception e)
+		{
+			//Erro
+			
 		}
 
+		PreencherTela();
+	}
+		
 }
 
