@@ -17,6 +17,6 @@ public class Results
     public string wind_cardinal {get;set;}
     public string currently {get;set;}
     public double cloudness {get;set;}
-    public List<Forcast> forcasts{get;set;}
+    public List<Forcast> forcast {get;set;}
 
 }
